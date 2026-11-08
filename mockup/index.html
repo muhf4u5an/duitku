@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DuitKu — Mockup</title>
+<style>
+  :root{
+    --bg:#F4F5FA; --card:#FFFFFF; --text:#1C1B2E; --muted:#7A7990; --line:#ECECF3;
+    --primary:#6C5CE7; --primary-2:#A29BFE; --primary-soft:#EEEBFF;
+    --in:#16A085; --in-soft:#E3F6F1; --out:#E8505B; --out-soft:#FDECEE;
+    --warn:#F5A623; --warn-soft:#FFF4E0; --couple:#E84393; --couple-soft:#FDE8F3;
+  }
+  body.dark{
+    --bg:#0F0F17; --card:#1B1B27; --text:#F1F0FA; --muted:#9A99B0; --line:#2A2A3A;
+    --primary-soft:#2B2650; --in-soft:#12332C; --out-soft:#3A1C20; --warn-soft:#3A2E14; --couple-soft:#3A1830;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;background:#DCDDE8;color:var(--text);padding:24px}
+  body.dark{background:#05050A}
+  .top{display:flex;align-items:center;justify-content:space-between;max-width:2050px;margin:0 auto 18px}
+  .top h1{font-size:20px;font-weight:600;color:#3A3950}
+  body.dark .top h1{color:#DDD}
+  .top button{border:0;background:#1C1B2E;color:#fff;padding:8px 14px;border-radius:10px;font-size:13px;cursor:pointer}
+  .row{display:flex;flex-wrap:wrap;justify-content:center;gap:28px;padding-bottom:16px;max-width:2050px;margin:0 auto}
+  .col{flex:0 0 auto}
+  .label{font-size:13px;color:#5A5970;margin:0 0 8px 6px;font-weight:600}
+  body.dark .label{color:#AAA}
+  .phone{width:375px;height:780px;background:var(--bg);border-radius:44px;border:10px solid #111;position:relative;overflow:hidden;display:flex;flex-direction:column}
+  .status{height:40px;display:flex;justify-content:space-between;align-items:center;padding:0 26px;font-size:13px;font-weight:600}
+  .scroll{flex:1;overflow-y:auto;padding:4px 16px 16px}
+  .scroll::-webkit-scrollbar{display:none}
+  .tabbar{height:78px;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:flex-start;padding-top:10px}
+  .tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--muted);position:relative;width:60px}
+  .tab .ic{font-size:20px;filter:grayscale(1);opacity:.6}
+  .tab.on{color:var(--primary);font-weight:600}
+  .tab.on .ic{filter:none;opacity:1}
+  .tab .add{width:48px;height:48px;border-radius:16px;background:var(--primary);color:#fff;font-size:26px;display:flex;align-items:center;justify-content:center;margin-top:-6px}
+  .badge{position:absolute;top:-4px;right:10px;background:var(--out);color:#fff;font-size:10px;font-weight:700;border-radius:9px;padding:1px 6px}
+  .hdr{display:flex;justify-content:space-between;align-items:center;margin:6px 0 14px}
+  .hdr h2{font-size:24px;font-weight:700}
+  .hdr .sub{font-size:13px;color:var(--muted)}
+  .iconbtn{width:36px;height:36px;border-radius:12px;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:17px}
+  .balance{background:linear-gradient(135deg,#6C5CE7 0%,#8E7CFF 55%,#E84393 130%);border-radius:22px;padding:18px;color:#fff}
+  .balance .t{font-size:12px;opacity:.85}
+  .balance .v{font-size:30px;font-weight:700;margin:4px 0 14px;letter-spacing:-.5px}
+  .accts{display:flex;gap:10px}
+  .acct{flex:1;background:rgba(255,255,255,.18);border-radius:14px;padding:10px 12px}
+  .acct .n{font-size:11px;opacity:.9}
+  .acct .a{font-size:15px;font-weight:700;margin-top:2px}
+  .card{background:var(--card);border-radius:18px;padding:14px;margin-top:12px}
+  .card h3{font-size:14px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between}
+  .card h3 a{font-size:12px;color:var(--primary);font-weight:600;text-decoration:none}
+  .trio{display:flex;gap:8px}
+  .trio div{flex:1;border-radius:12px;padding:10px}
+  .trio .k{font-size:11px;color:var(--muted)}
+  .trio .x{font-size:14px;font-weight:700;margin-top:2px}
+  .inbox-banner{display:flex;align-items:center;gap:10px;background:var(--warn-soft);border-radius:16px;padding:12px 14px;margin-top:12px;font-size:13px}
+  .inbox-banner b{font-size:14px}
+  .inbox-banner .go{margin-left:auto;color:var(--warn);font-weight:700}
+  .bud{margin-bottom:10px}
+  .bud .r{display:flex;justify-content:space-between;font-size:12px;margin-bottom:5px}
+  .bar{height:8px;border-radius:5px;background:var(--line);overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:5px}
+  .cat{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;flex:0 0 auto}
+  .tx{display:flex;align-items:center;gap:11px;padding:9px 0;border-bottom:1px solid var(--line)}
+  .tx:last-child{border-bottom:0}
+  .tx .mid{flex:1;min-width:0}
+  .tx .nm{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tx .ds{font-size:11px;color:var(--muted);margin-top:1px}
+  .tx .am{font-size:14px;font-weight:700}
+  .neg{color:var(--out)} .pos{color:var(--in)}
+  .pill{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;border-radius:8px;padding:2px 7px}
+  .plan-mini{display:flex;align-items:center;gap:11px}
+  .seg{display:flex;background:var(--card);border-radius:12px;padding:3px;margin-bottom:12px}
+  .seg div{flex:1;text-align:center;font-size:12px;padding:7px 0;border-radius:9px;color:var(--muted);font-weight:600}
+  .seg .on{background:var(--primary);color:#fff}
+  .ibx{background:var(--card);border-radius:18px;padding:14px;margin-bottom:10px;position:relative}
+  .ibx .top1{display:flex;justify-content:space-between;align-items:flex-start}
+  .ibx .amt{font-size:20px;font-weight:700}
+  .ibx .who{font-size:13px;color:var(--muted);margin-top:2px}
+  .ibx .meta{display:flex;gap:6px;margin-top:10px;align-items:center}
+  .src{font-size:10px;font-weight:700;border-radius:6px;padding:2px 6px}
+  .bsi{background:#E0F5F3;color:#00897B} .gopay{background:#E3F2FD;color:#0277BD}
+  body.dark .bsi{background:#0F3330} body.dark .gopay{background:#0F2A3E}
+  .suggest{margin-left:auto;font-size:11px;background:var(--primary-soft);color:var(--primary);font-weight:600;border-radius:8px;padding:4px 8px}
+  .swipewrap{position:relative;margin-bottom:10px;border-radius:18px;overflow:hidden}
+  .swipebg{position:absolute;inset:0;background:var(--in);display:flex;align-items:center;padding-left:18px;color:#fff;font-weight:700;font-size:13px}
+  .swipewrap .ibx{transform:translateX(110px);margin:0}
+  .hint{text-align:center;font-size:11px;color:var(--muted);margin:4px 0 12px}
+  .steps{display:flex;gap:6px;margin:4px 0 14px}
+  .steps i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+  .steps i.d{background:var(--primary)}
+  .txhead{background:var(--card);border-radius:18px;padding:14px;display:flex;align-items:center;gap:12px}
+  .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .chip{font-size:12px;font-weight:600;border-radius:10px;padding:6px 10px;display:flex;align-items:center;gap:4px}
+  .item{display:flex;gap:8px;margin-bottom:8px}
+  .inp{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:14px;flex:1}
+  .inp.p{flex:0 0 110px;text-align:right;font-weight:600}
+  .addrow{font-size:13px;color:var(--primary);font-weight:700;padding:6px 2px}
+  .check{display:flex;justify-content:space-between;font-size:12px;border-radius:12px;padding:10px 12px;margin-top:6px}
+  .photos{display:flex;gap:8px}
+  .ph{width:72px;height:72px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
+  .ph.add{border:2px dashed var(--line);color:var(--muted);font-size:22px}
+  .ph.img{background:repeating-linear-gradient(45deg,#E8E6F5,#E8E6F5 6px,#F4F3FB 6px,#F4F3FB 12px);font-size:11px;color:var(--muted);font-weight:600}
+  body.dark .ph.img{background:repeating-linear-gradient(45deg,#26243a,#26243a 6px,#1e1d2e 6px,#1e1d2e 12px)}
+  .select{background:var(--bg);border-radius:12px;padding:11px 12px;font-size:13px;display:flex;justify-content:space-between}
+  .btn{background:var(--primary);color:#fff;text-align:center;font-weight:700;border-radius:16px;padding:14px;margin-top:14px;font-size:15px}
+  .free{background:var(--card);border-radius:20px;padding:16px}
+  .free .v{font-size:26px;font-weight:700;margin:2px 0 8px}
+  .plan{background:var(--card);border-radius:18px;padding:14px;margin-top:10px}
+  .plan .h{display:flex;align-items:center;gap:11px}
+  .plan .nm{font-size:15px;font-weight:700}
+  .plan .ds{font-size:11px;color:var(--muted)}
+  .plan .pct{margin-left:auto;text-align:right}
+  .plan .pct b{font-size:18px}
+  .plan .pct span{display:block;font-size:10px;color:var(--muted)}
+  .stats{display:flex;gap:8px;margin-top:10px}
+  .stats div{flex:1;background:var(--bg);border-radius:10px;padding:7px 9px}
+  .stats .k{font-size:10px;color:var(--muted)}
+  .stats .x{font-size:13px;font-weight:700}
+  .advice{font-size:12px;border-radius:10px;padding:8px 10px;margin-top:8px}
+  .donutwrap{display:flex;align-items:center;gap:14px}
+  .donut{width:130px;height:130px;border-radius:50%;background:conic-gradient(#F39C12 0 38%,#6C5CE7 38% 55%,#00B894 55% 68%,#0984E3 68% 80%,#E84393 80% 92%,#B2BEC3 92% 100%);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .donut div{width:84px;height:84px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .donut b{font-size:15px} .donut span{font-size:10px;color:var(--muted)}
+  .legend{flex:1;font-size:11px}
+  .legend div{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+  .legend i{width:9px;height:9px;border-radius:3px;display:inline-block}
+  .legend span{margin-left:auto;font-weight:700}
+  .bars{display:flex;align-items:flex-end;gap:10px;height:120px;padding-top:6px}
+  .bars .g{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+  .bars .pair{display:flex;gap:3px;align-items:flex-end;height:100px}
+  .bars .pair i{width:11px;border-radius:4px 4px 0 0;display:block}
+  .bars .m{font-size:10px;color:var(--muted)}
+  .search{background:var(--bg);border-radius:12px;padding:10px 12px;font-size:13px;color:var(--muted)}
+  .lock{position:absolute;inset:0}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>DuitKu · mockup tampilan (data contoh)</h1>
+  <button onclick="document.body.classList.toggle('dark')">Ganti terang / gelap</button>
+</div>
+
+<div class="row">
+
+<!-- 1. BERANDA -->
+<div class="col">
+  <div class="label">1 · Beranda</div>
+  <div class="phone">
+    <div class="status"><span>09.41</span><span>●●● 🔋</span></div>
+    <div class="scroll">
+      <div class="hdr">
+        <div><div class="sub">Halo, selamat pagi 👋</div><h2>November</h2></div>
+        <div class="iconbtn">⚙️</div>
+      </div>
+      <div class="balance">
+        <div class="t">Total saldo</div>
+        <div class="v">Rp2.000.000</div>
+        <div class="accts">
+          <div class="acct"><div class="n">🏦 BSI</div><div class="a">Rp1.650.000</div></div>
+          <div class="acct"><div class="n">💙 GoPay</div><div class="a">Rp350.000</div></div>
+        </div>
+      </div>
+      <div class="inbox-banner">📥 <div><b>5 transaksi</b><br><span style="color:var(--muted);font-size:12px">menunggu kamu cek</span></div><span class="go">Cek →</span></div>
+      <div class="card">
+        <h3>Bulan ini</h3>
+        <div class="trio">
+          <div style="background:var(--in-soft)"><div class="k">Masuk</div><div class="x pos">3,0 jt</div></div>
+          <div style="background:var(--out-soft)"><div class="k">Keluar</div><div class="x neg">1,18 jt</div></div>
+          <div style="background:var(--primary-soft)"><div class="k">Selisih</div><div class="x" style="color:var(--primary)">+1,82 jt</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Budget <a>Semua</a></h3>
+        <div class="bud"><div class="r"><span>🍜 Makan/Minum</span><span><b>Rp450rb</b> / 600rb</span></div><div class="bar"><i style="width:75%;background:var(--in)"></i></div></div>
+        <div class="bud"><div class="r"><span>⛽ Bensin</span><span><b>Rp200rb</b> / 240rb</span></div><div class="bar"><i style="width:83%;background:var(--warn)"></i></div></div>
+        <div class="bud" style="margin:0"><div class="r"><span>🎓 Kuliah/Kerja</span><span><b>Rp330rb</b> / 300rb</span></div><div class="bar"><i style="width:100%;background:var(--out)"></i></div></div>
+      </div>
+      <div class="card">
+        <h3>Rencana terdekat <a>Semua</a></h3>
+        <div class="plan-mini">
+          <div class="cat" style="background:var(--couple-soft)">🎁</div>
+          <div style="flex:1"><div style="font-size:14px;font-weight:700">Kado ultah</div><div style="font-size:11px;color:var(--muted)">30 Nov · Rp500.000</div>
+            <div class="bar" style="margin-top:6px"><i style="width:18%;background:var(--out)"></i></div></div>
+          <div style="text-align:right"><b class="neg">18%</b><div style="font-size:10px;color:var(--muted)">kesiapan</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Terakhir <a>Riwayat</a></h3>
+        <div class="tx"><div class="cat" style="background:#FFF1DC">🍜</div><div class="mid"><div class="nm">Mie Gacoan</div><div class="ds">GoPay · 💑 Berdua</div></div><div class="am neg">−68.000</div></div>
+        <div class="tx"><div class="cat" style="background:#E0F2FE">⛽</div><div class="mid"><div class="nm">SPBU Pertamina</div><div class="ds">BSI · 👤 Sendiri</div></div><div class="am neg">−30.000</div></div>
+        <div class="tx"><div class="cat" style="background:var(--in-soft)">💰</div><div class="mid"><div class="nm">Uang bulanan</div><div class="ds">BSI · masuk</div></div><div class="am pos">+3.000.000</div></div>
+      </div>
+    </div>
+    <div class="tabbar">
+      <div class="tab on"><span class="ic">🏠</span>Beranda</div>
+      <div class="tab"><span class="ic">📥</span>Inbox<span class="badge">5</span></div>
+      <div class="tab"><span class="add">+</span></div>
+      <div class="tab"><span class="ic">🎯</span>Rencana</div>
+      <div class="tab"><span class="ic">📊</span>Laporan</div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. INBOX -->
+<div class="col">
+  <div class="label">2 · Inbox (dari Gmail)</div>
+  <div class="phone">
+    <div class="status"><span>09.41</span><span>●●● 🔋</span></div>
+    <div class="scroll">
+      <div class="hdr"><div><div class="sub">Tarik ke bawah untuk sinkron</div><h2>Inbox</h2></div><div class="iconbtn">🔄</div></div>
+      <div class="hint">👉 geser kanan = terima saran · 👈 geser kiri = abaikan · ketuk = rapikan</div>
+      <div class="swipewrap">
+        <div class="swipebg">✓ Terima saran</div>
+        <div class="ibx">
+          <div class="top1"><div><div class="amt neg">−Rp30.000</div><div class="who">SPBU PERTAMINA 34.xxx</div></div><span class="src bsi">BSI</span></div>
+          <div class="meta"><span style="font-size:11px;color:var(--muted)">Hari ini · 07.12</span><span class="suggest">⛽ Bensin · 👤</span></div>
+        </div>
+      </div>
+      <div class="ibx">
+        <div class="top1"><div><div class="amt neg">−Rp68.000</div><div class="who">MIE GACOAN</div></div><span class="src gopay">GoPay</span></div>
+        <div class="meta"><span style="font-size:11px;color:var(--muted)">Kemarin · 19.40</span><span class="suggest">🍜 Makan · 💑</span></div>
+      </div>
+      <div class="ibx">
+        <div class="top1"><div><div class="amt neg">−Rp100.000</div><div class="who">Top up GoPay</div></div><span class="src bsi">BSI</span></div>
+        <div class="meta"><span style="font-size:11px;color:var(--muted)">Kemarin · 12.05</span><span class="suggest" style="background:var(--warn-soft);color:var(--warn)">Mungkin dobel?</span></div>
+      </div>
+      <div class="ibx">
+        <div class="top1"><div><div class="amt neg">−Rp145.500</div><div class="who">INDOMARET</div></div><span class="src gopay">GoPay</span></div>
+        <div class="meta"><span style="font-size:11px;color:var(--muted)">6 Nov · 16.22</span><span class="suggest" style="background:var(--line);color:var(--muted)">Belum ada saran</span></div>
+      </div>
+      <div class="ibx">
+        <div class="top1"><div><div class="amt pos">+Rp250.000</div><div class="who">Transfer dari ANDI P</div></div><span class="src bsi">BSI</span></div>
+        <div class="meta"><span style="font-size:11px;color:var(--muted)">5 Nov · 10.00</span><span class="suggest" style="background:var(--in-soft);color:var(--in)">Pemasukan</span></div>
+      </div>
+    </div>
+    <div class="tabbar">
+      <div class="tab"><span class="ic">🏠</span>Beranda</div>
+      <div class="tab on"><span class="ic">📥</span>Inbox<span class="badge">5</span></div>
+      <div class="tab"><span class="add">+</span></div>
+      <div class="tab"><span class="ic">🎯</span>Rencana</div>
+      <div class="tab"><span class="ic">📊</span>Laporan</div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. RAPIKAN -->
+<div class="col">
+  <div class="label">3 · Rapikan transaksi (langkah 3 dari 5)</div>
+  <div class="phone">
+    <div class="status"><span>09.41</span><span>●●● 🔋</span></div>
+    <div class="scroll">
+      <div class="hdr"><div class="iconbtn">←</div><div style="font-weight:700">Rapikan</div><div style="width:36px"></div></div>
+      <div class="steps"><i class="d"></i><i class="d"></i><i class="d"></i><i></i><i></i></div>
+      <div class="txhead">
+        <div class="cat" style="background:#FFF1DC">🛒</div>
+        <div style="flex:1"><div style="font-weight:700">INDOMARET</div><div style="font-size:11px;color:var(--muted)">GoPay · 6 Nov 16.22</div></div>
+        <div class="neg" style="font-weight:700;font-size:17px">−145.500</div>
+      </div>
+      <div class="chips">
+        <span class="chip" style="background:var(--couple-soft);color:var(--couple)">💑 Berdua ✓</span>
+        <span class="chip" style="background:#FFF1DC;color:#B9770E">🍜 Makan/Minum ✓</span>
+      </div>
+      <div class="card">
+        <h3>Rincian item</h3>
+        <div class="item"><div class="inp">Susu UHT 1L</div><div class="inp p">21.500</div></div>
+        <div class="item"><div class="inp">Roti tawar</div><div class="inp p">18.000</div></div>
+        <div class="item"><div class="inp">Snack (3x)</div><div class="inp p">36.000</div></div>
+        <div class="item"><div class="inp">Air mineral 1,5L (4x)</div><div class="inp p">28.000</div></div>
+        <div class="addrow">＋ Tambah item</div>
+        <div class="check" style="background:var(--warn-soft)"><span>Total item <b>Rp103.500</b> dari Rp145.500</span><span style="color:var(--warn);font-weight:700">selisih 42.000</span></div>
+        <div style="font-size:12px;color:var(--primary);font-weight:600;margin-top:8px">↳ Masukkan selisih sebagai "lain-lain"</div>
+      </div>
+      <div class="card">
+        <h3>Catatan</h3>
+        <div class="inp" style="color:var(--muted)">Stok kos minggu ini</div>
+      </div>
+      <div class="card">
+        <h3>Foto nota <span style="font-size:11px;color:var(--muted);font-weight:500">opsional</span></h3>
+        <div class="photos"><div class="ph img">nota.jpg</div><div class="ph add">📷</div></div>
+      </div>
+      <div class="card">
+        <h3>Realisasi rencana? <span style="font-size:11px;color:var(--muted);font-weight:500">opsional</span></h3>
+        <div class="select"><span style="color:var(--muted)">Bukan bagian rencana</span><span>⌄</span></div>
+      </div>
+      <div class="btn">Simpan</div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. RENCANA -->
+<div class="col">
+  <div class="label">4 · Rencana & target</div>
+  <div class="phone">
+    <div class="status"><span>09.41</span><span>●●● 🔋</span></div>
+    <div class="scroll">
+      <div class="hdr"><div><div class="sub">Proyeksi otomatis dari polamu</div><h2>Rencana</h2></div><div class="iconbtn">＋</div></div>
+      <div class="free">
+        <div style="font-size:12px;color:var(--muted)">Saldo bebas setelah semua rencana (per 30 Nov)</div>
+        <div class="v neg">−Rp410.000</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <span class="pill" style="background:var(--in-soft);color:var(--in)">💰 Rp3jt tiap tgl 1</span>
+          <span class="pill" style="background:var(--primary-soft);color:var(--primary)">📉 rata-rata Rp80rb/hari</span>
+          <span class="pill" style="background:var(--line);color:var(--muted)">＋ Tambah dana</span>
+        </div>
+      </div>
+      <div class="plan">
+        <div class="h"><div class="cat" style="background:var(--couple-soft)">🌸</div><div><div class="nm">Bunga</div><div class="ds">15 Nov · 7 hari lagi · 💑</div></div>
+          <div class="pct"><b class="pos">100%</b><span>kesiapan</span></div></div>
+        <div class="bar" style="margin-top:10px"><i style="width:100%;background:var(--in)"></i></div>
+        <div class="stats"><div><div class="k">Target</div><div class="x">150rb</div></div><div><div class="k">Peluang</div><div class="x pos">99%</div></div><div><div class="k">Status</div><div class="x pos">🟢 Aman</div></div></div>
+      </div>
+      <div class="plan">
+        <div class="h"><div class="cat" style="background:var(--couple-soft)">🎁</div><div><div class="nm">Kado ultah</div><div class="ds">30 Nov · 22 hari lagi · 💑</div></div>
+          <div class="pct"><b class="neg">18%</b><span>kesiapan</span></div></div>
+        <div class="bar" style="margin-top:10px"><i style="width:18%;background:var(--out)"></i></div>
+        <div class="stats"><div><div class="k">Target</div><div class="x">500rb</div></div><div><div class="k">Peluang</div><div class="x neg">12%</div></div><div><div class="k">Kurang</div><div class="x neg">410rb</div></div></div>
+        <div class="advice" style="background:var(--out-soft);color:var(--out)">💡 Hemat <b>Rp18.600/hari</b> atau tambah dana Rp410rb</div>
+      </div>
+      <div class="plan">
+        <div class="h"><div class="cat" style="background:var(--primary-soft)">👟</div><div><div class="nm">Sepatu lari</div><div class="ds">Tanpa tanggal · 👤</div></div>
+          <div class="pct"><b style="color:var(--warn)">~</b><span>wishlist</span></div></div>
+        <div class="stats"><div><div class="k">Target</div><div class="x">1,2jt</div></div><div style="flex:2"><div class="k">Perkiraan tercapai</div><div class="x" style="color:var(--warn)">~ 18 Des 2026</div></div></div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--muted);margin-top:12px">Ketuk rencana untuk melihat rincian perhitungannya</div>
+    </div>
+    <div class="tabbar">
+      <div class="tab"><span class="ic">🏠</span>Beranda</div>
+      <div class="tab"><span class="ic">📥</span>Inbox<span class="badge">5</span></div>
+      <div class="tab"><span class="add">+</span></div>
+      <div class="tab on"><span class="ic">🎯</span>Rencana</div>
+      <div class="tab"><span class="ic">📊</span>Laporan</div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. LAPORAN -->
+<div class="col">
+  <div class="label">5 · Laporan</div>
+  <div class="phone">
+    <div class="status"><span>09.41</span><span>●●● 🔋</span></div>
+    <div class="scroll">
+      <div class="hdr"><div><div class="sub">‹ Oktober</div><h2>November</h2></div><div class="iconbtn">📅</div></div>
+      <div class="seg"><div class="on">Semua</div><div>👤 Sendiri</div><div>💑 Berdua</div></div>
+      <div class="card" style="margin-top:0">
+        <h3>Pengeluaran per kategori</h3>
+        <div class="donutwrap">
+          <div class="donut"><div><b>1,18 jt</b><span>total keluar</span></div></div>
+          <div class="legend">
+            <div><i style="background:#F39C12"></i>Makan/Minum<span>38%</span></div>
+            <div><i style="background:#6C5CE7"></i>Kuliah/Kerja<span>17%</span></div>
+            <div><i style="background:#00B894"></i>Investasi<span>13%</span></div>
+            <div><i style="background:#0984E3"></i>Bensin<span>12%</span></div>
+            <div><i style="background:#E84393"></i>Service<span>12%</span></div>
+            <div><i style="background:#B2BEC3"></i>Lainnya<span>8%</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="display:flex;align-items:center;gap:12px">
+        <div class="cat" style="background:var(--couple-soft)">💑</div>
+        <div style="flex:1"><div style="font-size:13px;font-weight:700">Berdua bulan ini</div><div style="font-size:11px;color:var(--muted)">30% dari total pengeluaran</div></div>
+        <b style="color:var(--couple)">Rp354rb</b>
+      </div>
+      <div class="card">
+        <h3>Tren 6 bulan <span style="font-size:11px;font-weight:500;color:var(--muted)"><span class="pos">■</span> masuk <span class="neg">■</span> keluar</span></h3>
+        <div class="bars">
+          <div class="g"><div class="pair"><i style="height:80%;background:var(--in)"></i><i style="height:62%;background:var(--out)"></i></div><span class="m">Jun</span></div>
+          <div class="g"><div class="pair"><i style="height:80%;background:var(--in)"></i><i style="height:75%;background:var(--out)"></i></div><span class="m">Jul</span></div>
+          <div class="g"><div class="pair"><i style="height:92%;background:var(--in)"></i><i style="height:58%;background:var(--out)"></i></div><span class="m">Agu</span></div>
+          <div class="g"><div class="pair"><i style="height:80%;background:var(--in)"></i><i style="height:88%;background:var(--out)"></i></div><span class="m">Sep</span></div>
+          <div class="g"><div class="pair"><i style="height:86%;background:var(--in)"></i><i style="height:66%;background:var(--out)"></i></div><span class="m">Okt</span></div>
+          <div class="g"><div class="pair"><i style="height:80%;background:var(--in)"></i><i style="height:32%;background:var(--out)"></i></div><span class="m">Nov</span></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Cari item</h3>
+        <div class="search">🔍 kopi</div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;margin-top:10px"><span>☕ "kopi" · 9 kali bulan ini</span><b class="neg">Rp196.000</b></div>
+      </div>
+    </div>
+    <div class="tabbar">
+      <div class="tab"><span class="ic">🏠</span>Beranda</div>
+      <div class="tab"><span class="ic">📥</span>Inbox<span class="badge">5</span></div>
+      <div class="tab"><span class="add">+</span></div>
+      <div class="tab"><span class="ic">🎯</span>Rencana</div>
+      <div class="tab on"><span class="ic">📊</span>Laporan</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
